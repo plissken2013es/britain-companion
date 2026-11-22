@@ -13,6 +13,7 @@ import { heuristicBot } from '../src/ai/heuristicBot.js';
 import { boardAt, guideSteps } from '../companion/guide.js';
 import { logLine } from '../src/ui/text.js';
 import { goals, progressOf } from '../companion/goals.js';
+import { handDeckPlay } from '../companion/cards.js';
 import es from '../src/i18n/es.js';
 import * as companion from '../src/i18n/companion.js';
 
@@ -58,9 +59,18 @@ test('after every answer, the steps rebuild the engine\'s table and cards, and s
                         assert.ok(st.at >= 0 && st.at < entries.length);
                     }
                     if (entries.length) {
-                        const shown = table(boardAt(before, entries, entries.length - 1));
+                        const board = boardAt(before, entries, entries.length - 1);
+                        const shown = table(board);
                         const real = table(s.view(me));
                         assert.deepEqual(shown, real, `s${sc.id} seat ${me}, answer ${n}`);
+                        // the cards panel's detail (cards.js): each side's hand, deck and play as the engine has them
+                        for (const seat of [0, 1]) {
+                            const counted = handDeckPlay(board, seat);
+                            if (!counted) continue; // the computer once it has lost cards: only its play is shown
+                            const p = s.state.players[seat];
+                            const sorted = (o) => Object.fromEntries(Object.entries(o).filter(([, k]) => k).sort());
+                            assert.deepEqual(sorted(counted), sorted(counts([...p.hand, ...p.deck, ...p.play])), `s${sc.id} seat ${me}, cards of ${seat}, answer ${n}`);
+                        }
                     }
                 };
                 for (; !s.over && n < 5000; n++) {

@@ -21,7 +21,8 @@ import { BoardZoom } from '../src/ui/zoom.js';
 import { canFullscreen, isFullscreen, toggleFullscreen } from '../src/ui/touch.js';
 import { drawMap, hexAtPoint } from './map.js';
 import { boardAt, guideSteps } from './guide.js';
-import { planeName, dirName, cardList } from './names.js';
+import { planeName, dirName, cardLabel } from './names.js';
+import { cardPanels, cardsChoice, sideLabel } from './cards.js';
 import { goals, progressOf } from './goals.js';
 import { CONTACT, bugMail, appKind } from './contact.js';
 
@@ -75,7 +76,9 @@ export class CompanionView {
         this.sc = scenarioById(this.session.setup.scenario);
         this.bot = computerBot(this.sc.id, this.botSeat, `${this.session.setup.seed}:bot`);
         this.marks = game.marks ?? []; // answers.length before each of the player's answers (undo)
-        this.panelOpen = { mine: true }; // the panels' <details> are rebuilt every render; this keeps them open or closed
+        this.panelOpen = { mine: true, cards: true }; // the panels' <details> are rebuilt every render; this keeps them open or closed
+        // the sections of the 'compared' cards panel the player has folded (cards.js)
+        this.fold = { collapsed: {}, toggle: (key) => { this.fold.collapsed[key] = !this.fold.collapsed[key]; this.render(); } };
         // the steps still to show: those of the log since `base.logStart`, less the `done` ones; saved with the game, so
         // a game left halfway through the computer's turn comes back to the same step
         this.steps = [];
@@ -220,8 +223,7 @@ export class CompanionView {
             : this.session.over ? this.endCard() : req ? this.askCard(req, view) : null;
         this.panel.replaceChildren(main ?? '',
             this.openPanel('goals', this.goalsPanel(this.shown)),
-            this.openPanel('mine', this.minePanel(this.shown)),
-            this.openPanel('bot', this.botPanel(this.shown)),
+            ...this.cardPanels(this.shown).map(([key, el]) => this.openPanel(key, el)),
             this.openPanel('log', this.logPanel(step ? step.log : view.log, this.shown)));
     }
 
@@ -233,11 +235,20 @@ export class CompanionView {
     }
 
     renderTop(view) {
-        const ini = t('cmp.initiative', { side: view.initiative === this.me ? t('cmp.you') : t('cmp.bot') });
+        // each side with how far its objective has got, and the initiative as a dot at the outer edge of the side that
+        // holds it (left of the RAF, right of the Luftwaffe); its text shows on hover, or next to it after a tap (61's
+        // PR #1, by Albert Gil)
+        const score = SIDES.map((side, seat) => h('span', { class: `score ${side}` },
+            `${seat === this.me ? sideLabel(seat, this.me) : sideName(seat)} · ${(this.sc.win[side] ?? []).map((c) => progressOf(view, seat, c)).join(t('cmp.goal.or'))}`));
+        const ini = t('cmp.initiative', { side: sideName(view.initiative) });
+        const dot = [
+            h('span', { class: `ini-dot ${SIDES[view.initiative]}`, title: ini, role: 'img', 'aria-label': ini, onclick: () => { this.iniText = !this.iniText; this.renderTop(view); } }),
+            this.iniText ? h('span', { class: `ini ${SIDES[view.initiative]}` }, ini) : null,
+        ].filter(Boolean);
         this.top.replaceChildren(
             h('strong', {}, `${this.sc.id}. ${scenarioTitle(this.sc)}`),
             h('span', { class: 'muted' }, t('cmp.round', { n: Math.max(1, view.round) })),
-            h('span', { class: `ini ${SIDES[view.initiative]}` }, ini),
+            ...(view.initiative === 0 ? [...dot, ...score] : [...score, ...dot.reverse()]),
             h('span', { class: 'grow' }),
             h('button', { class: 'extras', onclick: () => this.showCheck() }, t('cmp.menu.check')),
             h('button', { onclick: () => this.undo(), disabled: Boolean(this.busy) || !this.marks.length }, `↶ ${t('cmp.menu.undo')}`),
@@ -259,6 +270,16 @@ export class CompanionView {
             }],
             [t(pref('planes') === true ? 'cmp.menu.planesOn' : 'cmp.menu.planesOff'), () => {
                 setPref('planes', pref('planes') !== true);
+                this.render();
+                this.showMenu();
+            }],
+            [t(`cmp.menu.cards.${this.cards().view}`), () => {
+                setPref('cards', this.cards().view === 'compared' ? 'player' : 'compared');
+                this.render();
+                this.showMenu();
+            }],
+            [t(this.cards().detail ? 'cmp.menu.detailOn' : 'cmp.menu.detailOff'), () => {
+                setPref('detail', !this.cards().detail);
                 this.render();
                 this.showMenu();
             }],
@@ -377,13 +398,13 @@ export class CompanionView {
             case 'bid': {
                 const opts = [...req.options].sort((a, b) => b.initiative - a.initiative);
                 return box(t('cmp.ask.bid'), h('p', {}, t('cmp.ask.bidText')),
-                    h('div', { class: 'opts grid' }, opts.map((o) => btn(o, `${cardName(o.card)} (${o.initiative})`))));
+                    h('div', { class: 'opts grid' }, opts.map((o) => btn(o, cardLabel(o.card)))));
             }
             case 'play': {
                 const end = req.options.find((o) => o.id === 'end');
                 const cards = req.options.filter((o) => o.card);
                 return box(t('cmp.ask.play'), h('p', { class: 'small muted' }, t('cmp.ask.playHand', { n: view.players[this.me].handCount })),
-                    h('div', { class: 'opts grid' }, cards.map((o) => btn(o, cardName(o.card)))),
+                    h('div', { class: 'opts grid' }, cards.map((o) => btn(o, cardLabel(o.card)))),
                     end ? h('div', { class: 'buttons' }, btn(end, t('cmp.ask.end'), 'quiet')) : null);
             }
             case 'plan':
@@ -406,7 +427,7 @@ export class CompanionView {
                     h('div', { class: 'opts' }, req.options.map((o) => btn(o, plain(o), o.id === 'dark' ? 'quiet' : '')),
                         (req.blocked ?? []).map((b) => h('button', { class: 'opt', disabled: true }, `${t(`action.${b.action}`)}${b.value != null ? ` ${b.value}` : ''} — ${t(`cmp.blocked.${b.reason}`)}`))));
             case 'bolster':
-                return box(t('cmp.ask.bolster', { left: req.left }), h('div', { class: 'opts' }, req.options.map((o) => btn(o, o.id === 'done' ? t('opt.done') : cardName(o.card), o.id === 'done' ? 'quiet' : ''))));
+                return box(t('cmp.ask.bolster', { left: req.left }), h('div', { class: 'opts' }, req.options.map((o) => btn(o, o.id === 'done' ? t('opt.done') : cardLabel(o.card), o.id === 'done' ? 'quiet' : ''))));
             case 'command':
                 return box(t('cmp.ask.command', { left: req.left }), h('div', { class: 'opts two' }, req.options.map((o) => btn(o, plain(o), o.id === 'done' ? 'quiet' : ''))));
             case 'guide':
@@ -414,7 +435,7 @@ export class CompanionView {
             case 'guideTurn':
                 return box(t('cmp.ask.guideTurn', { aircraft: pn(req.aircraft) }), h('div', { class: 'opts' }, req.options.map((o) => btn(o, o.id === 'none' ? t('cmp.ask.noTurn') : plain(o)))));
             case 'inspire':
-                return box(t('cmp.ask.inspire'), h('div', { class: 'opts' }, req.options.map((o) => btn(o, cardName(o.card)))));
+                return box(t('cmp.ask.inspire'), h('div', { class: 'opts' }, req.options.map((o) => btn(o, cardLabel(o.card)))));
             case 'sail':
                 return box(t('cmp.ask.sail'), onMap, h('div', { class: 'opts' }, req.options.map((o) => btn(o, o.id === 'done' ? t('opt.done') : `${t('marker.ship')} (${o.marker})`, o.id === 'done' ? 'quiet' : ''))));
             case 'deploy':
@@ -423,7 +444,7 @@ export class CompanionView {
                 return box(t('cmp.ask.facing', { aircraft: pn(req.aircraft) }), h('div', { class: 'opts grid' }, req.options.map((o) => btn(o, dirName(Number(o.id.slice(2)))))));
             case 'leftover':
                 return box(t('cmp.ask.leftover', { left: req.left }), h('p', { class: 'small muted' }, t('cmp.ask.leftoverText')),
-                    h('div', { class: 'opts grid' }, req.options.map((o) => btn(o, cardName(o.card)))));
+                    h('div', { class: 'opts grid' }, req.options.map((o) => btn(o, cardLabel(o.card)))));
             case 'casualty':
                 return box(t('cmp.ask.casualty', { aircraft: pn(req.aircraft) }), h('p', { class: 'small' }, t('cmp.ask.casualtyRule')),
                     h('div', { class: 'opts' }, req.options.map((o) => btn(o, t(`cmp.ask.from.${o.from}`)))));
@@ -470,25 +491,15 @@ export class CompanionView {
                 h('span', { class: 'progress' }, ` · ${(this.sc.win[SIDES[seat]] ?? []).map((c) => progressOf(view, seat, c)).join(t('cmp.goal.or'))}`)))));
     }
 
-    minePanel(view) {
-        const p = view.players[this.me];
-        const pile = (label, cards) => h('p', {}, h('b', {}, `${label}: `), Object.keys(cards ?? {}).length ? countList(cards) : t('cmp.none'));
-        return h('details', { class: 'info' }, h('summary', {}, t('cmp.cards.mine', { hand: p.handCount, deck: p.deckCount })),
-            pile(t('cmp.cards.handDeck'), p.hidden),
-            pile(t('cmp.cards.discard'), p.discard),
-            pile(t('cmp.cards.play'), p.play),
-            pile(t('cmp.cards.supply'), p.supply),
-            h('p', { class: 'small muted' }, t('cmp.cards.out', { removed: p.removedCount, aside: p.aside })));
+    /** The player's choice of cards panel (cards.js): 'player' or 'compared', with or without the detail. */
+    cards() {
+        return cardsChoice({ cards: pref('cards'), detail: pref('detail') });
     }
 
-    botPanel(view) {
-        const p = view.players[this.botSeat];
-        const pile = (label, cards) => h('p', {}, h('b', {}, `${label}: `), Object.keys(cards ?? {}).length ? countList(cards) : t('cmp.none'));
-        return h('details', { class: 'info' }, h('summary', {}, t('cmp.cards.bot', { hand: p.handCount, deck: p.deckCount })),
-            pile(t('cmp.cards.discard'), p.discard),
-            pile(t('cmp.cards.play'), p.play),
-            pile(t('cmp.cards.supply'), p.supply),
-            h('p', { class: 'small muted' }, t('cmp.cards.out', { removed: p.removedCount, aside: p.aside })));
+    /** The cards panels as [key, <details>], laid out as the player chose. */
+    cardPanels(view) {
+        const { view: layout, detail } = this.cards();
+        return cardPanels(layout, view, this.me, { detail, fold: this.fold });
     }
 
     logPanel(entries, view) {
@@ -534,7 +545,7 @@ export class CompanionView {
             h('p', { class: 'small' }, t('cmp.check.intro')),
             h('table', {}, h('thead', {}, h('tr', {}, ['aircraft', 'where', 'facing', 'state'].map((k) => h('th', {}, t(`cmp.check.${k}`))))), h('tbody', {}, rows)),
             off.length ? h('p', { class: 'small' }, h('b', {}, `${t('cmp.check.offBoard')}: `), off.join(', ')) : null,
-            this.minePanel(view), this.botPanel(view),
+            ...this.cardPanels(view).map(([, el]) => el),
             h('div', { class: 'buttons' }, h('button', { class: 'primary', onclick: () => this.hideModal() }, t('cmp.close')))));
         for (const d of this.modal.querySelectorAll('details')) d.open = true;
     }
@@ -601,9 +612,4 @@ function fireSound(type, seat) {
     if (type === 'antiAir') sfx.flak();
     else if (type === 'bomb') sfx.whistle();
     else sfx.guns(0, seat);
-}
-
-/** "Y1 Hurricane ×2, Discordia" from a { key: n } count. */
-function countList(cards) {
-    return cardList(Object.entries(cards).flatMap(([k, n]) => Array(Math.max(0, n)).fill(k)));
 }

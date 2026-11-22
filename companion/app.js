@@ -12,6 +12,7 @@ import { decodeRecord, replayRecord } from '../src/engine/session.js';
 import { sideName } from '../src/ui/text.js';
 import { drawMap } from './map.js';
 import { cardList } from './names.js';
+import { CARD_VIEWS, cardsChoice } from './cards.js';
 import { CompanionView, loadSaved, goals, pref, setPref, warmDice } from './play.js';
 import { pauseWhenHidden } from '../src/ui/sound.js';
 import { CONTACT, SOURCE, VERSION, bugMail, appKind } from './contact.js';
@@ -64,6 +65,8 @@ function setupScreen() {
         ['terrain', 'diagram'].map((v) => h('option', { value: v, selected: (v === 'terrain') === (pref('terrain') !== false) }, t(`cmp.setup.map.${v}`))));
     const planesSel = h('select', { onchange: (e) => { setPref('planes', e.target.value === 'planes'); showInfo(); } },
         ['text', 'planes'].map((v) => h('option', { value: v, selected: (v === 'planes') === (pref('planes') === true) }, t(`cmp.setup.counters.${v}`))));
+    const cardsSel = h('select', { onchange: (e) => setPref('cards', e.target.value) },
+        CARD_VIEWS.map((v) => h('option', { value: v, selected: v === cardsChoice({ cards: pref('cards') }).view }, t(`cmp.cards.view.${v}`))));
     const code = h('input', { placeholder: 'UBB1.…', size: 18 });
     const err = h('span', { class: 'error small' });
     const saved = loadSaved();
@@ -80,6 +83,7 @@ function setupScreen() {
                 h('label', {}, t('cmp.setup.botDice'), dice),
                 h('label', {}, t('cmp.setup.map'), mapSel),
                 h('label', {}, t('cmp.setup.counters'), planesSel),
+                h('label', {}, t('cmp.setup.cards'), cardsSel),
                 h('button', { class: 'primary', onclick: () => {
                     setPref('scenario', scenario);
                     setPref('side', side);

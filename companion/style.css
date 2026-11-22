@@ -37,9 +37,16 @@ input, select, textarea { background: #0d1318; color: var(--ink); border: 1px so
 
 .bar { display: flex; gap: 10px 14px; align-items: center; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
 .bar .sub { font-size: 0.9em; }
-.bar .ini { padding: 2px 9px; border-radius: 10px; font-size: 0.9em; }
-.bar .ini.raf { background: color-mix(in srgb, var(--raf) 60%, transparent); }
-.bar .ini.luftwaffe { background: color-mix(in srgb, var(--lw) 70%, transparent); }
+.bar .score { padding: 2px 9px; border-radius: 10px; font-size: 0.9em; }
+.bar .score.raf { background: color-mix(in srgb, var(--raf) 60%, transparent); }
+.bar .score.luftwaffe { background: color-mix(in srgb, var(--lw) 70%, transparent); }
+/* the initiative: a dot at the outer edge of the side that holds it, its text after a tap (61's PR #1) */
+.bar .ini { font-size: 0.9em; }
+.bar .ini.raf { color: var(--raf-l); }
+.bar .ini.luftwaffe { color: var(--lw-l); }
+.bar .ini-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; cursor: pointer; }
+.bar .ini-dot.raf { background: var(--raf-l); }
+.bar .ini-dot.luftwaffe { background: var(--lw-l); }
 .bar .menu-btn { font-size: 1.1em; }
 
 /* start screen */
@@ -96,6 +103,14 @@ input, select, textarea { background: #0d1318; color: var(--ink); border: 1px so
 .info p { margin: 6px 0; font-size: 0.9em; }
 .info ul { padding-left: 18px; margin: 6px 0; font-size: 0.9em; }
 .info .progress { color: var(--accent); font-weight: 600; }
+/* the cards panels (cards.js, 61's PRs #1 and #2): one per player, or both side by side with sections that fold */
+.deck-panel .piles { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 0.88em; margin: 6px 0; }
+.deck-panel .piles b { white-space: nowrap; }
+.cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; font-size: 0.88em; margin: 6px 0; text-align: center; }
+.cards-grid .cards-head { font-weight: 600; }
+.cards-grid .cards-head div { font-weight: 400; }
+.cards-grid .cards-title { grid-column: 1 / -1; font-weight: 600; margin-top: 4px; cursor: pointer; user-select: none; }
+.cards-grid .right { border-left: 1px solid var(--line); padding-left: 10px; }
 .info.log ol { padding-left: 0; margin: 0; font-size: 0.85em; max-height: 280px; overflow-y: auto; list-style-position: inside; }
 .info.log li.round { font-weight: 600; margin-top: 4px; list-style: none; }
 

@@ -30,6 +30,12 @@ export const isAce = (a) => TYPES[baseId(a.id)].rank === 'ace';
 
 export const dirName = (facing) => t(`cmp.dir.${facing}`);
 
+/** "Y2 Hurricane (4)": a card as a button, with its initiative (61's PR #1); a Discord has none. */
+export function cardLabel(key) {
+    const n = TYPES[key]?.initiative;
+    return n != null ? `${cardName(key)} (${n})` : cardName(key);
+}
+
 /** "Y1 Hurricane ×2, Discordia" from a list of card keys. */
 export function cardList(keys) {
     const n = new Map();
