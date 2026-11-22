@@ -1,0 +1,180 @@
+/* The companion (docs/02 §8): its own look, no art of the game. Night sky and sea; RAF blue, Luftwaffe grey. */
+:root {
+    --bg: #121a22;
+    --panel: #1b2631;
+    --panel2: #24323f;
+    --line: #3a4b5a;
+    --ink: #e8edf1;
+    --muted: #9aa9b5;
+    --raf: #2f63a8;
+    --raf-l: #8bb7ef;
+    --lw: #5c6168;
+    --lw-l: #c9ced4;
+    --accent: #f0c45a;
+    --hit: #3f9a52;
+    --miss: #b5523f;
+    --sea: #2b5876;
+    --sea-line: #23485f;
+    --land: #8a9a62;
+    --land-line: #6f7d4d;
+    font-family: system-ui, 'Segoe UI', sans-serif;
+    color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+.setup, .cplay { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+body { margin: 0; background: var(--bg); color: var(--ink); }
+button { background: var(--panel2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: 0.45; cursor: default; }
+button.primary { background: var(--raf); border-color: var(--raf-l); font-weight: 600; }
+input, select, textarea { background: #0d1318; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px; font: inherit; }
+.muted { color: var(--muted); }
+.small { font-size: 0.86em; }
+.error { color: var(--miss); }
+.grow { flex: 1; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.bar { display: flex; gap: 10px 14px; align-items: center; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.bar .sub { font-size: 0.9em; }
+.bar .ini { padding: 2px 9px; border-radius: 10px; font-size: 0.9em; }
+.bar .ini.raf { background: color-mix(in srgb, var(--raf) 60%, transparent); }
+.bar .ini.luftwaffe { background: color-mix(in srgb, var(--lw) 70%, transparent); }
+.bar .menu-btn { font-size: 1.1em; }
+
+/* start screen */
+.notice { margin: 14px 16px 0; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--panel); border-radius: 6px; line-height: 1.45; }
+.setup-body { display: grid; grid-template-columns: minmax(230px, 290px) 1fr; gap: 20px; padding: 16px; }
+.form { display: flex; flex-direction: column; gap: 10px; }
+.form label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9em; }
+.scen-info { display: grid; grid-template-columns: minmax(240px, 1fr) minmax(260px, 560px); gap: 18px; align-items: start; }
+.scen-text h3 { margin-top: 0; }
+.scen-text ul { padding-left: 18px; }
+.scen-map .cmap { width: 100%; height: auto; }
+.credits { padding: 4px 16px 18px; max-width: 900px; line-height: 1.4; }
+
+/* the game */
+.cplay { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+.cplay main { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr minmax(300px, 400px); }
+/* the map's frame (src/ui/zoom.js): the viewBox is the zoom */
+.board-wrap { position: relative; min-height: 0; overflow: hidden; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.board-wrap .cmap { width: 100%; height: 100%; touch-action: none; }
+.board-wrap.panning .cmap { cursor: grabbing; }
+.board-reset { position: absolute; top: 6px; right: 6px; z-index: 2; font-size: 18px; line-height: 1; padding: 8px 11px; background: rgb(27 38 49 / 0.92); }
+.board-reset[hidden], .arm-tip[hidden] { display: none; }
+.arm-tip { position: absolute; z-index: 3; transform: translateX(-50%); background: rgb(13 19 24 / 0.94); border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; padding: 4px 8px; font-size: 0.85em; white-space: nowrap; pointer-events: none; }
+.panel { min-height: 0; overflow-y: auto; padding: 12px; background: var(--panel); border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.card-box { background: var(--panel2); border-radius: 10px; padding: 14px; border: 1px solid var(--line); }
+.card-box h3 { margin: 0 0 8px; font-size: 1.1em; }
+.card-box .head { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 6px; }
+.card-box .big { font-size: 1.15em; line-height: 1.4; margin: 6px 0; }
+.card-box .played { font-weight: 700; }
+.card-box .head .played { font-size: 1.2em; }
+.card-box .played.raf { color: var(--raf-l); }
+.card-box .played.luftwaffe { color: var(--lw-l); }
+.card-box.step.raf { border-left: 5px solid var(--raf); }
+.card-box.step.luftwaffe { border-left: 5px solid var(--lw-l); }
+.card-box.thinking { color: var(--muted); font-style: italic; }
+.card-box .result { font-size: 1.2em; font-weight: 700; min-height: 1.4em; }
+.card-box .result.hit { color: #8fd69d; }
+.card-box .result.miss { color: #e79a87; }
+.buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+/* a step's Done buttons wait, hidden, for its dice (its display: flex would show them anyway) */
+.buttons[hidden] { display: none; }
+.opts { display: flex; flex-direction: column; gap: 6px; }
+.opts.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+.opts.two { display: grid; grid-template-columns: 1fr 1fr; }
+.opt { text-align: left; padding: 10px 12px; min-height: 44px; }
+.opt.quiet { opacity: 0.8; }
+.opt.hit { background: var(--hit); font-weight: 700; text-align: center; font-size: 1.15em; }
+.opt.miss { background: var(--miss); font-weight: 700; text-align: center; font-size: 1.15em; }
+.roll .need { font-size: 3em; font-weight: 800; margin: 4px 0; text-align: center; }
+.roll.raf .need { color: var(--raf-l); }
+.roll.luftwaffe .need { color: var(--lw-l); }
+.info { background: var(--panel2); border-radius: 8px; padding: 6px 10px; }
+.info summary { cursor: pointer; font-size: 0.92em; }
+.info p { margin: 6px 0; font-size: 0.9em; }
+.info ul { padding-left: 18px; margin: 6px 0; font-size: 0.9em; }
+.info .progress { color: var(--accent); font-weight: 600; }
+.info.log ol { padding-left: 0; margin: 0; font-size: 0.85em; max-height: 280px; overflow-y: auto; list-style-position: inside; }
+.info.log li.round { font-weight: 600; margin-top: 4px; list-style: none; }
+
+.modal { position: fixed; inset: 0; background: rgb(0 0 0 / 0.55); display: flex; align-items: center; justify-content: center; z-index: 20; padding: 16px; }
+.modal[hidden] { display: none; }
+.modal-box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; max-width: 760px; width: 100%; max-height: 90vh; overflow-y: auto; }
+.modal-box .info { margin-top: 8px; }
+.check table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+.check td, .check th { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+.toast { position: fixed; z-index: 30; left: 50%; bottom: 24px; transform: translateX(-50%); padding: 10px 16px; border-radius: 8px; background: var(--panel2); border: 1px solid var(--accent); }
+
+/* the map */
+.cmap { display: block; }
+.cmap .hex { stroke-width: 1.2; }
+.cmap .hex.sea { fill: var(--sea); stroke: var(--sea-line); }
+.cmap .hex.land { fill: var(--land); stroke: var(--land-line); }
+.cmap .hex.pickable { cursor: pointer; stroke: var(--accent); stroke-width: 4; }
+.cmap .hex.pickable:hover { filter: brightness(1.15); }
+.cmap .hex.armed { stroke: #fff; stroke-width: 5; }
+.cmap .hex.focus { stroke: #fff; stroke-width: 3; stroke-dasharray: 6 4; }
+.cmap .tile-id { font-size: 11px; font-weight: 800; text-anchor: middle; fill: #29321b; opacity: 0.75; pointer-events: none; }
+.cmap .deploy { fill: none; stroke: #e58fc0; stroke-width: 2.5; stroke-dasharray: 5 4; pointer-events: none; }
+.cmap .escape { fill: none; stroke: #9be39a; stroke-width: 2.5; stroke-dasharray: 2 4; pointer-events: none; }
+.cmarker { pointer-events: none; }
+.cmarker.pickable { pointer-events: auto; cursor: pointer; }
+.cmarker.cloud circle { fill: #eef2f5; stroke: #b9c3cc; stroke-width: 1; }
+.cmarker.balloon ellipse, .cmarker.balloon path { fill: #b3b9be; stroke: #5b6166; stroke-width: 1.2; }
+.cmarker.balloon .cable { stroke: #5b6166; stroke-width: 1.2; }
+.cmarker.ship path { fill: #4b5560; stroke: #1b2026; stroke-width: 1.5; }
+.cmarker.structure path { fill: #b9785a; stroke: #4a2a1c; stroke-width: 1.5; }
+.cmarker.aaa circle { fill: #3f4a3a; stroke: #151a12; stroke-width: 1.5; }
+.cmarker.aaa .cross { stroke: #e9e2c9; stroke-width: 2; }
+.cmarker .mdef-bg { fill: #f6f1df; stroke: #222; stroke-width: 1; }
+.cmarker .mdef { font-size: 10px; font-weight: 800; text-anchor: middle; fill: #222; }
+.cmarker.pickable path, .cmarker.pickable circle, .cmarker.pickable ellipse { stroke: var(--accent); stroke-width: 3; }
+.cmarker.focus path, .cmarker.focus circle, .cmarker.focus ellipse { stroke: #fff; stroke-width: 3; }
+.cmap.terrain .hex { stroke: rgb(0 0 0 / 0.22); stroke-width: 1; }
+.cmap.terrain .tex { image-rendering: pixelated; }
+.cmap.terrain .tile-id { fill: #20280f; stroke: #e9efd2; stroke-width: 3; stroke-linejoin: round; paint-order: stroke; opacity: 0.9; }
+.ccounter .body { stroke-width: 3; }
+.ccounter.art .body { fill-opacity: 0.85; }
+.ccounter .plane { image-rendering: pixelated; pointer-events: none; }
+.ccounter.out .plane { filter: grayscale(1) brightness(0.7); }
+.ccounter.art text { stroke: #10161c; stroke-width: 2.4; stroke-linejoin: round; paint-order: stroke; }
+.ccounter.art .label { font-size: 8px; }
+.ccounter.art .def { font-size: 7.5px; }
+.ccounter.raf .body { fill: var(--raf); }
+.ccounter.lw .body { fill: var(--lw); }
+.ccounter.out .body { fill: #3b3f44; stroke-dasharray: 4 3; }
+.ccounter text { text-anchor: middle; fill: #fff; font-weight: 700; pointer-events: none; }
+.ccounter .label { font-size: 9.5px; }
+.ccounter .def { font-size: 8px; opacity: 0.9; }
+.ccounter .star { fill: #ffd75a; stroke: none; pointer-events: none; }
+.ccounter:not(.pickable) { pointer-events: none; } /* a finger on a counter that is no choice picks the hex under it */
+.ccounter.pickable { cursor: pointer; }
+.ccounter.pickable .body { stroke: var(--accent) !important; stroke-width: 4; }
+.ccounter.armed .body { stroke: #fff !important; stroke-width: 5; }
+.ccounter.focus .body { stroke: #fff !important; stroke-width: 4; }
+.cmap .arrow { stroke-width: 3; stroke-linecap: round; stroke-dasharray: 9 6; }
+.cmap .arrow.raf { stroke: var(--raf-l); }
+.cmap .arrow.luftwaffe { stroke: var(--lw-l); }
+.cmap .arrow-head { fill: var(--accent); }
+
+/* phone */
+@media (max-width: 760px) {
+    .setup-body, .scen-info { grid-template-columns: minmax(0, 1fr); }
+    .cplay main { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(220px, 50dvh) minmax(0, 1fr); }
+    .panel { border-left: none; border-top: 1px solid var(--line); }
+    .bar { gap: 6px 10px; padding: 6px 10px; font-size: 0.9em; }
+    .bar button { padding: 6px 8px; }
+    .bar .extras { display: none; }
+}
+
+/* phone on its side: the map beside the panel, as on a big screen, and a bar of one line */
+@media (max-height: 500px) and (orientation: landscape) {
+    .cplay main { grid-template-columns: minmax(0, 1fr) minmax(280px, 44vw); }
+    .bar { gap: 4px 10px; padding: 3px 10px; font-size: 0.85em; }
+    .bar strong, .bar .ini { display: none; }
+    .bar button { padding: 4px 8px; }
+    .bar .extras { display: none; }
+    .panel { padding: 8px; }
+}

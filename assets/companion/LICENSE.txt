@@ -1,0 +1,5 @@
+The companion's own art (tools/companion_art.py):
+- aircraft/: aircraft seen from above, generated with PixelLab (pixellab.ai) from text descriptions only, for
+  this project; usable under the PixelLab terms of service.
+- terrain/: sea and countryside textures drawn by the script itself.
+Released with the companion's code (MIT).

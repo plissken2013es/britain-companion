@@ -1,0 +1,400 @@
+{
+ "id": 6,
+ "title": "Destroy the Destroyers",
+ "initiative": "luftwaffe",
+ "win": {
+  "raf": [
+   {
+    "neutralise": 2,
+    "aircraft": [
+     "Heinkel",
+     "BF 110C"
+    ]
+   },
+   {
+    "escape": 2,
+    "what": "ship"
+   }
+  ],
+  "luftwaffe": [
+   {
+    "destroy": 3,
+    "what": [
+     "ship"
+    ]
+   }
+  ]
+ },
+ "cards": {
+  "raf": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "B Section Comms": "D",
+   "AAA": "D",
+   "Ships": "D",
+   "Y1 Hurricane": "DSS",
+   "Y2 Hurricane": "DSS",
+   "B★ Spitfire": "DSSS",
+   "B2 Spitfire": "DSS",
+   "Discord": "DDSSSSSS"
+  },
+  "luftwaffe": {
+   "Squadron Comms": "D",
+   "G Section Comms": "D",
+   "B Section Comms": "D",
+   "G1 BF 110C": "DSS",
+   "G2 BF 110C": "DSS",
+   "B★ BF 109F": "DSSS",
+   "B2 BF 109F": "DSS",
+   "H1 Heinkel": "DDSS",
+   "H2 Heinkel": "DDSS",
+   "Discord": "DDSSSSSS"
+  }
+ },
+ "landTiles": [
+  "A",
+  "B",
+  "C",
+  "H",
+  "I",
+  "J",
+  "L",
+  "M",
+  "N",
+  "O",
+  "Q",
+  "X"
+ ],
+ "hexes": {
+  "0": "2-16",
+  "1": "1-17",
+  "2": "2-16",
+  "3": "1-17",
+  "4": "2-16",
+  "5": "1-17",
+  "6": "2-16",
+  "7": "1-17",
+  "8": "2-16",
+  "9": "1-17",
+  "10": "2-16",
+  "11": "1-17"
+ },
+ "tiles": [
+  {
+   "id": "A",
+   "hex": [
+    0,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "B",
+   "hex": [
+    2,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "O",
+   "hex": [
+    4,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "C",
+   "hex": [
+    6,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "H",
+   "hex": [
+    8,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "Q",
+   "hex": [
+    10,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "L",
+   "hex": [
+    1,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "X",
+   "hex": [
+    3,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "N",
+   "hex": [
+    5,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "M",
+   "hex": [
+    7,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "J",
+   "hex": [
+    9,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "I",
+   "hex": [
+    11,
+    13
+   ],
+   "rot": 180
+  }
+ ],
+ "tokens": [
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y2",
+   "hex": [
+    3,
+    1
+   ],
+   "facing": "SE"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y1",
+   "hex": [
+    2,
+    2
+   ],
+   "facing": "SE"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B*",
+   "hex": [
+    8,
+    2
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B2",
+   "hex": [
+    8,
+    4
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "H1",
+   "hex": [
+    9,
+    1
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "H2",
+   "hex": [
+    9,
+    3
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "G1",
+   "hex": [
+    10,
+    2
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "G2",
+   "hex": [
+    10,
+    4
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    6,
+    2
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    3,
+    3
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    1,
+    5
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    8,
+    6
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    5,
+    13
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    2,
+    14
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    2,
+    4
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    6,
+    6
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    8,
+    8
+   ]
+  },
+  {
+   "type": "ship",
+   "hex": [
+    1,
+    7
+   ],
+   "facing": "N",
+   "face": "down",
+   "defence": 6
+  },
+  {
+   "type": "ship",
+   "hex": [
+    5,
+    7
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "ship",
+   "hex": [
+    3,
+    9
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "ship",
+   "hex": [
+    7,
+    9
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    6,
+    10
+   ]
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    3,
+    11
+   ]
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B*",
+   "hex": [
+    7,
+    11
+   ],
+   "facing": "NW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B2",
+   "hex": [
+    8,
+    12
+   ],
+   "facing": "NW"
+  }
+ ],
+ "escape": []
+}

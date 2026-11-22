@@ -1,0 +1,236 @@
+{
+ "id": 5,
+ "title": "The Dogfight over Bosom",
+ "initiative": "raf",
+ "win": {
+  "raf": [
+   {
+    "neutralise": 1,
+    "rank": "ace"
+   },
+   {
+    "neutralise": 3,
+    "rank": "other"
+   }
+  ],
+  "luftwaffe": [
+   {
+    "neutralise": 1,
+    "rank": "ace"
+   },
+   {
+    "neutralise": 3,
+    "rank": "other"
+   }
+  ]
+ },
+ "cards": {
+  "raf": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "P Section Comms": "D",
+   "B Section Comms": "D",
+   "Y1 Hurricane": "DSS",
+   "Y2 Hurricane": "DSS",
+   "P1 Spitfire": "DSS",
+   "P2 Spitfire": "DSS",
+   "B★ Spitfire": "DDSS",
+   "B2 Spitfire": "DSS",
+   "Discord": "DDSSSSSS"
+  },
+  "luftwaffe": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "R Section Comms": "D",
+   "B Section Comms": "D",
+   "Y1 BF 109E": "DSS",
+   "Y2 BF 109E": "DSS",
+   "R1 BF 109E": "DSS",
+   "R2 BF 109E": "DSS",
+   "B★ BF 109F": "DDSS",
+   "B2 BF 109F": "DSS",
+   "Discord": "DDSSSSSS"
+  }
+ },
+ "landTiles": [],
+ "hexes": {
+  "0": "2-16",
+  "1": "1-17",
+  "2": "2-16",
+  "3": "1-17",
+  "4": "2-16",
+  "5": "1-17",
+  "6": "2-16",
+  "7": "1-17",
+  "8": "2-16",
+  "9": "1-17",
+  "10": "2-16",
+  "11": "1-17"
+ },
+ "tiles": [],
+ "tokens": [
+  {
+   "type": "cloud",
+   "hex": [
+    8,
+    6
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    5,
+    7
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    2,
+    8
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    1,
+    13
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    4,
+    14
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    7,
+    15
+   ]
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "Y1",
+   "hex": [
+    2,
+    2
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "Y2",
+   "hex": [
+    3,
+    3
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B2",
+   "hex": [
+    8,
+    2
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B*",
+   "hex": [
+    7,
+    5
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "R1",
+   "hex": [
+    5,
+    9
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "R2",
+   "hex": [
+    5,
+    11
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y2",
+   "hex": [
+    5,
+    5
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y1",
+   "hex": [
+    4,
+    6
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P1",
+   "hex": [
+    0,
+    16
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P2",
+   "hex": [
+    1,
+    17
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B*",
+   "hex": [
+    9,
+    17
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B2",
+   "hex": [
+    10,
+    16
+   ],
+   "facing": "N"
+  }
+ ],
+ "escape": []
+}

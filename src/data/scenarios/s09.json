@@ -1,0 +1,425 @@
+{
+ "id": 9,
+ "title": "The Night Raids",
+ "initiative": "luftwaffe",
+ "win": {
+  "raf": [
+   {
+    "neutralise": 2
+   }
+  ],
+  "luftwaffe": [
+   {
+    "points": 6,
+    "per": {
+     "aircraft": 1,
+     "structure": 1
+    }
+   }
+  ]
+ },
+ "decoys": [
+  "G1",
+  "G2",
+  "H1",
+  "H2"
+ ],
+ "cards": {
+  "raf": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "P Section Comms": "D",
+   "B Section Comms": "D",
+   "Y* Hurricane": "SSSS",
+   "Y2 Hurricane": "SSS",
+   "P1 Spitfire": "SSS",
+   "P2 Spitfire": "SSS",
+   "B* Spitfire": "DSSS",
+   "B2 Spitfire": "DSS",
+   "Discord": "DDSSSSSS"
+  },
+  "luftwaffe": {
+   "Squadron Comms": "D",
+   "G Section Comms": "D",
+   "G1 BF 110C": "DSS",
+   "G2 BF 110C": "DSS",
+   "H1 Heinkel": "DDSS",
+   "H2 Heinkel": "DDSS",
+   "Discord": "DDSSSSSS"
+  }
+ },
+ "landTiles": [
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "Q",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z"
+ ],
+ "hexes": {
+  "0": "0-16",
+  "1": "1-15",
+  "2": "0-16",
+  "3": "1-15",
+  "4": "0-16",
+  "5": "1-15",
+  "6": "0-16",
+  "7": "1-15",
+  "8": "0-16",
+  "9": "1-15",
+  "10": "0-16",
+  "11": "1-15"
+ },
+ "tiles": [
+  {
+   "id": "Q",
+   "hex": [
+    0,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "D",
+   "hex": [
+    2,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "E",
+   "hex": [
+    4,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "C",
+   "hex": [
+    6,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "O",
+   "hex": [
+    8,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "F",
+   "hex": [
+    10,
+    2
+   ],
+   "rot": 0
+  },
+  {
+   "id": "L",
+   "hex": [
+    1,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "X",
+   "hex": [
+    3,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "J",
+   "hex": [
+    5,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "I",
+   "hex": [
+    7,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "Y",
+   "hex": [
+    9,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "G",
+   "hex": [
+    11,
+    7
+   ],
+   "rot": 180
+  },
+  {
+   "id": "Z",
+   "hex": [
+    0,
+    12
+   ],
+   "rot": 0
+  },
+  {
+   "id": "K",
+   "hex": [
+    2,
+    12
+   ],
+   "rot": 0
+  },
+  {
+   "id": "V",
+   "hex": [
+    4,
+    12
+   ],
+   "rot": 0
+  },
+  {
+   "id": "W",
+   "hex": [
+    6,
+    12
+   ],
+   "rot": 0
+  },
+  {
+   "id": "M",
+   "hex": [
+    8,
+    12
+   ],
+   "rot": 0
+  },
+  {
+   "id": "N",
+   "hex": [
+    10,
+    12
+   ],
+   "rot": 0
+  }
+ ],
+ "tokens": [
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y2",
+   "hex": [
+    5,
+    7
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y*",
+   "hex": [
+    6,
+    8
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P1",
+   "hex": [
+    2,
+    12
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P2",
+   "hex": [
+    3,
+    13
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B*",
+   "hex": [
+    5,
+    11
+   ],
+   "facing": "NE"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B2",
+   "hex": [
+    4,
+    12
+   ],
+   "facing": "NE"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    2,
+    4
+   ],
+   "defence": 8,
+   "label": "harbour (tile D docks)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    5,
+    5
+   ],
+   "defence": 8,
+   "label": "coastal harbour town (tile E)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    1,
+    7
+   ],
+   "defence": 8,
+   "label": "town (tile L)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    2,
+    8
+   ],
+   "defence": 8,
+   "label": "village (tile X)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    5,
+    9
+   ],
+   "defence": 8,
+   "label": "airfield (tile J)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    6,
+    14
+   ],
+   "defence": 8,
+   "label": "town (tile W)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    3,
+    15
+   ],
+   "defence": 8,
+   "label": "airfield (tile K)"
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    2
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    4
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    6
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    8
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    10
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    12
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    14
+   ]
+  },
+  {
+   "type": "deploy",
+   "side": "luftwaffe",
+   "hex": [
+    10,
+    16
+   ]
+  }
+ ],
+ "escape": []
+}

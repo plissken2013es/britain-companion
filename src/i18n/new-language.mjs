@@ -1,0 +1,142 @@
+#!/usr/bin/env node
+// Starts a translation of the companion, or checks one (the public README, "Translating the companion"; as in 61):
+//
+//     node src/i18n/new-language.mjs it Italiano     # writes src/i18n/lang/it.js with the English texts, and lists it
+//     node src/i18n/new-language.mjs --check it      # what is missing or wrong in lang/it.js
+//
+// A language file has its code, its name (in that language), the credit line, the scenario titles (only if the
+// edition of the game in that language translates them) and every text the companion shows. Game terms (Discord,
+// Bolster, Inspire, section, initiative…) must be the ones printed in that edition: the player reads them with the
+// cards in hand. Aircraft names (Hurricane, BF 109E…) are the same in every language.
+
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import en from './en.js';
+import * as companion from './companion.js';
+import { SCENARIOS } from '../engine/data.js';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+/**
+ * The texts of es.js / en.js the companion shows (through src/ui/text.js): sides, cards, markers, actions, options,
+ * log lines and the end of a game. The rest belong to the private digital version and stay out of the public
+ * repository (tools/build-companion.mjs takes the same ones).
+ */
+export const isPublicText = (k) => /^(side|card|log|opt|action|marker)\./.test(k) || /^game\.(winner|draw|limit)$/.test(k);
+const scKey = (sc) => `s${String(sc.id).padStart(2, '0')}`;
+
+/** The English model: what every language file must have. */
+export function model() {
+    const texts = Object.fromEntries(Object.entries({ ...en, ...companion.en }).filter(([k]) => isPublicText(k) || k.startsWith('cmp.')));
+    const scenarios = Object.fromEntries(SCENARIOS.map((sc) => [scKey(sc), sc.title]));
+    return { texts, scenarios };
+}
+
+const quote = (s) => `'${s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n')}'`;
+const entry = (k, v) => `        ${/^[A-Za-z_]\w*$/.test(k) ? k : quote(k)}: ${typeof v === 'function' ? v.toString() : quote(v)},`;
+
+/** The source of a new language file, with the English texts in place to be translated. */
+export function starter(code, name) {
+    return languageSource({ code, name, credit: `${name} translation: your name`, ...model() });
+}
+
+/** The source of a language file for `l` ({ code, name, credit, scenarios, texts }). */
+export function languageSource(l) {
+    const { code, name } = l;
+    const block = (obj) => Object.entries(obj ?? {}).map(([k, v]) => entry(k, v)).join('\n');
+    return `// ${name} (${code}): texts of Britain Companion. Translate the strings and keep the keys, the {placeholders}
+// and the code of the few functions (plurals). Game terms: exactly as printed in the edition of the game in this
+// language. Check with: node src/i18n/new-language.mjs --check ${code}
+
+export default {
+    code: ${quote(code)},
+    name: ${quote(name)},
+    credit: ${quote(l.credit)},
+
+    // the scenario titles, as in the scenario book of this edition (leave them in English if it does not translate them)
+    scenarios: {
+${block(l.scenarios)}
+    },
+
+    texts: {
+${block(l.texts)}
+    },
+};
+`;
+}
+
+/**
+ * A language file against the English model: `errors` (wrong code, extra keys, broken placeholders or plurals) and
+ * `missing` (texts not translated yet, shown in English meanwhile: new texts land in English first).
+ */
+export function checkLanguage(l) {
+    const m = model();
+    const out = [];
+    const missing = [];
+    if (!/^[a-z]{2,3}(-[a-z]{2})?$/.test(l.code ?? '')) out.push(`code "${l.code}": two or three lowercase letters (pt-br for a variant)`);
+    if (['es', 'en'].includes(l.code)) out.push(`code "${l.code}" is already built in`);
+    for (const f of ['name', 'credit']) if (typeof l[f] !== 'string' || !l[f].trim()) out.push(`${f} is missing`);
+    for (const part of ['scenarios', 'texts']) {
+        const have = l[part] ?? {};
+        for (const k of Object.keys(m[part])) if (!(k in have)) missing.push(`${part}: "${k}"`);
+        for (const k of Object.keys(have)) if (!(k in m[part])) out.push(`${part}: "${k}" is not used by the companion`);
+        for (const [k, v] of Object.entries(have)) {
+            const ref = m[part][k];
+            if (ref === undefined) continue;
+            if (typeof ref === 'function') {
+                if (typeof v !== 'function') { out.push(`${part}: "${k}" must be a function, like the English one`); continue; }
+                try {
+                    if (typeof v(new Proxy({}, { get: () => 2 })) !== 'string') out.push(`${part}: "${k}" must return a string`);
+                } catch (e) {
+                    out.push(`${part}: "${k}" fails: ${e.message}`);
+                }
+                continue;
+            }
+            if (typeof v !== 'string' || !v.trim()) { out.push(`${part}: "${k}" is empty`); continue; }
+            const ph = (s) => [...s.matchAll(/\{(\w+)\}/g)].map((x) => x[1]).sort().join(',');
+            if (ph(v) !== ph(ref)) {
+                out.push(ph(ref) ? `${part}: "${k}" must keep the placeholders {${ph(ref).split(',').join('}, {')}}` : `${part}: "${k}" must not have {placeholders}`);
+            }
+        }
+    }
+    return { errors: out, missing };
+}
+
+/** Imports the new file in lang/index.js and adds it to the list there. */
+export function register(code) {
+    const file = join(HERE, 'lang/index.js');
+    const id = code.replace('-', '_');
+    const src = readFileSync(file, 'utf8');
+    if (src.includes(`'./${code}.js'`)) return;
+    const lines = src.split('\n');
+    const at = lines.findIndex((l) => l.startsWith('export default ['));
+    const names = lines[at].slice('export default ['.length, lines[at].lastIndexOf(']')).split(',').map((s) => s.trim()).filter(Boolean);
+    lines[at] = `export default [${[...names, id].join(', ')}];`;
+    const lastImport = lines.findLastIndex((l) => l.startsWith('import '));
+    if (lastImport >= 0) lines.splice(lastImport + 1, 0, `import ${id} from './${code}.js';`);
+    else lines.splice(at, 0, `import ${id} from './${code}.js';`, '');
+    writeFileSync(file, lines.join('\n'));
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+    const args = process.argv.slice(2);
+    if (args[0] === '--check') {
+        const code = args[1];
+        const { default: l } = await import(pathToFileURL(join(HERE, `lang/${code}.js`)).href);
+        const { errors, missing } = checkLanguage(l);
+        if (errors.length) console.log(`To fix:\n  ${errors.join('\n  ')}`);
+        if (missing.length) console.log(`To translate (shown in English meanwhile):\n  ${missing.join('\n  ')}`);
+        if (!errors.length && !missing.length) console.log(`lang/${code}.js: complete`);
+        process.exitCode = errors.length || missing.length ? 1 : 0;
+    } else if (args.length === 2) {
+        const [code, name] = args;
+        const file = join(HERE, `lang/${code}.js`);
+        if (existsSync(file)) throw new Error(`lang/${code}.js already exists`);
+        writeFileSync(file, starter(code, name));
+        register(code);
+        console.log(`wrote src/i18n/lang/${code}.js and listed it in src/i18n/lang/index.js`);
+    } else {
+        console.log('usage: node src/i18n/new-language.mjs <code> <name>  |  --check <code>');
+        process.exitCode = 2;
+    }
+}

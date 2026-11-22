@@ -1,0 +1,10 @@
+The gunfire in this folder is cut (61_Undaunted_Normandy/tools/build_sounds.py) from:
+
+The Free Firearm Sound Library (prepared version)
+Created and recorded by Ben Jaszczak, Brian Nelson, Kevin Heras and Matthew Nanney.
+https://opengameart.org/content/the-free-firearm-sound-library
+License: CC0 1.0 (public domain dedication), http://creativecommons.org/publicdomain/zero/1.0/
+
+The library has no aircraft guns; the nearest are its two submachine guns:
+raf-mg: PPSh-41 (about 1000 rounds a minute, like the eight Brownings of a Spitfire or a Hurricane).
+lw-mg: Carl Gustav m/45 (slower, for the MG 17 and the MG FF cannon; sound.js adds the cannon's thump).

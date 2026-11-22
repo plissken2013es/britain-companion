@@ -1,0 +1,33 @@
+The engine passes in this folder are cut (tools/engine_sounds.py) from the HQ previews of these Freesound recordings.
+Each file is a short window around the moment the aircraft is overhead, band-passed, resampled and faded.
+
+RAF: Supermarine Spitfire (Rolls-Royce Merlin)
+raf-engine-1, raf-engine-2: "AEROMil_Croxall Lakes, Spitfire, Passing By, Distant Birds, _JW Audio" by JW_Audio
+  https://freesound.org/people/JW_Audio/sounds/827214/ (CC0 1.0)
+raf-engine-3: "Spitfire over Cliffs of Dover UK" by itinerantmonk108 (Spitfire LF Mk XVIe TE184, 1945)
+  https://freesound.org/people/itinerantmonk108/sounds/700584/ (CC0 1.0)
+raf-engine-4: "Spitfire_fly_by 1" by beerbelly38
+  https://freesound.org/people/beerbelly38/sounds/160241/ (CC0 1.0)
+raf-engine-5: "spitfire close 1.wav" by beerbelly38
+  https://freesound.org/people/beerbelly38/sounds/160242/ (CC0 1.0)
+raf-engine-6: "merlin engine.wav" by squashy555 (a Merlin on a static display)
+  https://freesound.org/people/squashy555/sounds/276597/ (CC0 1.0)
+
+Luftwaffe: Messerschmitt Bf 109 (Daimler-Benz DB 601 and DB 605)
+lw-engine-1, lw-engine-2: "Bf-109 Flyby" by Fight2FlyPhoto (a DB 601 powered Bf 109E-3 Emil)
+  https://freesound.org/people/Fight2FlyPhoto/sounds/143558/
+  Creative Commons Attribution 3.0, http://creativecommons.org/licenses/by/3.0/
+lw-engine-3: "Spitfires and Bf-109 Flyby" by Fight2FlyPhoto
+  https://freesound.org/people/Fight2FlyPhoto/sounds/142902/
+  Creative Commons Attribution 3.0, http://creativecommons.org/licenses/by/3.0/
+lw-engine-4: "Bf-109 - Daimler-Benz Run-Up" by Fight2FlyPhoto
+  https://freesound.org/people/Fight2FlyPhoto/sounds/142898/
+  Creative Commons Attribution 3.0, http://creativecommons.org/licenses/by/3.0/
+lw-engine-5: "DB605start-run-off.mp3" by a Freesound user since deleted
+  https://freesound.org/people/deleted_user_1667702/sounds/103187/ (CC0 1.0)
+
+CC0 1.0: http://creativecommons.org/publicdomain/zero/1.0/
+
+Not used, and never for the public Companion: "Hawker Hurricane Flyby" by Fight2FlyPhoto
+(https://freesound.org/people/Fight2FlyPhoto/sounds/161103/) is CC BY-NC 3.0 (non-commercial). It would do for this
+private clone only; the public Companion may use the CC0 and CC-BY recordings above (CC-BY with the credit).

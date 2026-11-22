@@ -1,0 +1,1063 @@
+{
+ "raf": [
+  {
+   "id": "sqn",
+   "name": "Squadron Comms",
+   "title": "SQUADRON COMMS",
+   "kind": "comms",
+   "initiative": 9,
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 3
+    },
+    {
+     "type": "guide"
+    },
+    {
+     "type": "command",
+     "value": 2
+    },
+    {
+     "type": "coordinate"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsY",
+   "name": "Y Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "Y",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsR",
+   "name": "R Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "R",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsG",
+   "name": "G Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "G",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsP",
+   "name": "P Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "P",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsB",
+   "name": "B Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "B",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "aaa",
+   "name": "AAA",
+   "title": "AAA",
+   "kind": "comms",
+   "initiative": 2,
+   "actions": [
+    {
+     "type": "anti-air",
+     "value": 3
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "ships",
+   "name": "Ships",
+   "title": "SHIPS",
+   "kind": "comms",
+   "initiative": 2,
+   "actions": [
+    {
+     "type": "sail"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "Yace",
+   "name": "Y★ Hurricane",
+   "title": "HURRICANE ACE",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "ace",
+   "aircraft": "Hurricane",
+   "initiative": 6,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": true
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "Y1",
+   "name": "Y1 Hurricane",
+   "title": "HURRICANE 1",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "1",
+   "aircraft": "Hurricane",
+   "initiative": 5,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "Y2",
+   "name": "Y2 Hurricane",
+   "title": "HURRICANE 2",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "2",
+   "aircraft": "Hurricane",
+   "initiative": 4,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "R1",
+   "name": "R1 Hurricane",
+   "title": "HURRICANE 1",
+   "kind": "combat",
+   "section": "R",
+   "rank": "1",
+   "aircraft": "Hurricane",
+   "initiative": 4,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "R2",
+   "name": "R2 Hurricane",
+   "title": "HURRICANE 2",
+   "kind": "combat",
+   "section": "R",
+   "rank": "2",
+   "aircraft": "Hurricane",
+   "initiative": 3,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "G1",
+   "name": "G1 Defiant",
+   "title": "DEFIANT 1",
+   "kind": "combat",
+   "section": "G",
+   "rank": "1",
+   "aircraft": "Defiant",
+   "initiative": 4,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1,
+     "rear": 2
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "G2",
+   "name": "G2 Defiant",
+   "title": "DEFIANT 2",
+   "kind": "combat",
+   "section": "G",
+   "rank": "2",
+   "aircraft": "Defiant",
+   "initiative": 3,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1,
+     "rear": 2
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "P1",
+   "name": "P1 Spitfire",
+   "title": "SPITFIRE 1",
+   "kind": "combat",
+   "section": "P",
+   "rank": "1",
+   "aircraft": "Spitfire",
+   "initiative": 5,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "P2",
+   "name": "P2 Spitfire",
+   "title": "SPITFIRE 2",
+   "kind": "combat",
+   "section": "P",
+   "rank": "2",
+   "aircraft": "Spitfire",
+   "initiative": 4,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "Bace",
+   "name": "B★ Spitfire",
+   "title": "SPITFIRE ACE",
+   "kind": "combat",
+   "section": "B",
+   "rank": "ace",
+   "aircraft": "Spitfire",
+   "initiative": 7,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": true
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "B2",
+   "name": "B2 Spitfire",
+   "title": "SPITFIRE 2",
+   "kind": "combat",
+   "section": "B",
+   "rank": "2",
+   "aircraft": "Spitfire",
+   "initiative": 5,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "discord",
+   "name": "Discord",
+   "title": "DISCORD",
+   "kind": "discord",
+   "initiative": 1,
+   "actions": [],
+   "copies": 8
+  }
+ ],
+ "luftwaffe": [
+  {
+   "id": "sqn",
+   "name": "Squadron Comms",
+   "title": "SQUADRON COMMS",
+   "kind": "comms",
+   "initiative": 9,
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 3
+    },
+    {
+     "type": "guide"
+    },
+    {
+     "type": "command",
+     "value": 2
+    },
+    {
+     "type": "coordinate"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsY",
+   "name": "Y Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "Y",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "Y",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsR",
+   "name": "R Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "R",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "R",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsG",
+   "name": "G Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "G",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "G",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsP",
+   "name": "P Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "P",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "P",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "commsB",
+   "name": "B Section Comms",
+   "title": "SECTION COMMS",
+   "kind": "comms",
+   "section": "B",
+   "initiative": 8,
+   "initiativeIcon": "discord",
+   "actions": [
+    {
+     "type": "bolster",
+     "value": 2,
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "guide",
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "inspire",
+     "section": "B",
+     "icon": "discord"
+    },
+    {
+     "type": "coordinate",
+     "icon": "blocked"
+    }
+   ],
+   "copies": 1
+  },
+  {
+   "id": "Yace",
+   "name": "Y★ BF 109E",
+   "title": "BF 109E ACE",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "ace",
+   "aircraft": "BF 109E",
+   "initiative": 6,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": true
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "Y1",
+   "name": "Y1 BF 109E",
+   "title": "BF 109E 1",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "1",
+   "aircraft": "BF 109E",
+   "initiative": 5,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "Y2",
+   "name": "Y2 BF 109E",
+   "title": "BF 109E 2",
+   "kind": "combat",
+   "section": "Y",
+   "rank": "2",
+   "aircraft": "BF 109E",
+   "initiative": 4,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "R1",
+   "name": "R1 BF 109E",
+   "title": "BF 109E 1",
+   "kind": "combat",
+   "section": "R",
+   "rank": "1",
+   "aircraft": "BF 109E",
+   "initiative": 4,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "R2",
+   "name": "R2 BF 109E",
+   "title": "BF 109E 2",
+   "kind": "combat",
+   "section": "R",
+   "rank": "2",
+   "aircraft": "BF 109E",
+   "initiative": 3,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 2,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "G1",
+   "name": "G1 BF 110C",
+   "title": "BF 110C 1",
+   "kind": "combat",
+   "section": "G",
+   "rank": "1",
+   "aircraft": "BF 110C",
+   "initiative": 4,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    },
+    {
+     "type": "bomb",
+     "value": 2
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "G2",
+   "name": "G2 BF 110C",
+   "title": "BF 110C 2",
+   "kind": "combat",
+   "section": "G",
+   "rank": "2",
+   "aircraft": "BF 110C",
+   "initiative": 3,
+   "move": 2,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    },
+    {
+     "type": "bomb",
+     "value": 2
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "P1",
+   "name": "P1 BF 109F",
+   "title": "BF 109F 1",
+   "kind": "combat",
+   "section": "P",
+   "rank": "1",
+   "aircraft": "BF 109F",
+   "initiative": 5,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "P2",
+   "name": "P2 BF 109F",
+   "title": "BF 109F 2",
+   "kind": "combat",
+   "section": "P",
+   "rank": "2",
+   "aircraft": "BF 109F",
+   "initiative": 4,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "Bace",
+   "name": "B★ BF 109F",
+   "title": "BF 109F ACE",
+   "kind": "combat",
+   "section": "B",
+   "rank": "ace",
+   "aircraft": "BF 109F",
+   "initiative": 7,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": true
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "B2",
+   "name": "B2 BF 109F",
+   "title": "BF 109F 2",
+   "kind": "combat",
+   "section": "B",
+   "rank": "2",
+   "aircraft": "BF 109F",
+   "initiative": 5,
+   "move": 3,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 3,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 2,
+     "rear": 3
+    }
+   ],
+   "copies": 3
+  },
+  {
+   "id": "H1",
+   "name": "H1 Heinkel",
+   "title": "HEINKEL 1",
+   "kind": "combat",
+   "section": "H",
+   "rank": "1",
+   "aircraft": "Heinkel",
+   "initiative": 2,
+   "move": 1,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1
+    },
+    {
+     "type": "bomb",
+     "value": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "H2",
+   "name": "H2 Heinkel",
+   "title": "HEINKEL 2",
+   "kind": "combat",
+   "section": "H",
+   "rank": "2",
+   "aircraft": "Heinkel",
+   "initiative": 2,
+   "move": 1,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1
+    },
+    {
+     "type": "bomb",
+     "value": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "S1",
+   "name": "S1 Stuka",
+   "title": "STUKA 1",
+   "kind": "combat",
+   "section": "S",
+   "rank": "1",
+   "aircraft": "Stuka",
+   "initiative": 3,
+   "move": 1,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1
+    },
+    {
+     "type": "bomb",
+     "value": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "S2",
+   "name": "S2 Stuka",
+   "title": "STUKA 2",
+   "kind": "combat",
+   "section": "S",
+   "rank": "2",
+   "aircraft": "Stuka",
+   "initiative": 3,
+   "move": 1,
+   "actions": [
+    {
+     "type": "manoeuvre",
+     "value": 1,
+     "pre": false
+    },
+    {
+     "type": "attack",
+     "value": 1
+    },
+    {
+     "type": "bomb",
+     "value": 3
+    }
+   ],
+   "copies": 4
+  },
+  {
+   "id": "discord",
+   "name": "Discord",
+   "title": "DISCORD",
+   "kind": "discord",
+   "initiative": 1,
+   "actions": [],
+   "copies": 8
+  }
+ ]
+}

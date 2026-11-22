@@ -1,0 +1,78 @@
+{
+ "raf": {
+  "Hurricane": {
+   "defence": 5,
+   "ace": 6,
+   "lines": [
+    "F"
+   ]
+  },
+  "Spitfire": {
+   "defence": 5,
+   "ace": 6,
+   "lines": [
+    "F"
+   ]
+  },
+  "Defiant": {
+   "defence": 4,
+   "lines": [
+    "FR",
+    "BR",
+    "B",
+    "BL",
+    "FL"
+   ]
+  }
+ },
+ "luftwaffe": {
+  "BF 109E": {
+   "defence": 5,
+   "ace": 6,
+   "lines": [
+    "F"
+   ]
+  },
+  "BF 109F": {
+   "defence": 5,
+   "ace": 6,
+   "lines": [
+    "F"
+   ]
+  },
+  "BF 110C": {
+   "defence": 6,
+   "lines": [
+    "F"
+   ]
+  },
+  "Heinkel": {
+   "defence": 7,
+   "lines": [
+    "F",
+    "FR",
+    "BR",
+    "B",
+    "BL",
+    "FL"
+   ]
+  },
+  "Stuka": {
+   "defence": 6,
+   "lines": [
+    "B"
+   ]
+  }
+ },
+ "markers": {
+  "structure": {
+   "defence": null
+  },
+  "ship": {
+   "defence": null
+  },
+  "aaa": {
+   "defence": 6
+  }
+ }
+}

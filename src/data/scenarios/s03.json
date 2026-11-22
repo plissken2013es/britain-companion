@@ -1,0 +1,279 @@
+{
+ "id": 3,
+ "title": "When Bombs First Fell",
+ "initiative": "raf",
+ "win": {
+  "raf": [
+   {
+    "neutralise": 4,
+    "weights": {
+     "Stuka": 2,
+     "Heinkel": 2
+    }
+   }
+  ],
+  "luftwaffe": [
+   {
+    "points": 4,
+    "per": {
+     "aircraft": 1,
+     "escaped": {
+      "Stuka": 2,
+      "Heinkel": 2
+     }
+    }
+   }
+  ]
+ },
+ "escapers": {
+  "luftwaffe": [
+   "Stuka",
+   "Heinkel"
+  ]
+ },
+ "cards": {
+  "raf": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "R Section Comms": "D",
+   "P Section Comms": "D",
+   "Y1 Hurricane": "DSS",
+   "Y2 Hurricane": "DSS",
+   "R1 Hurricane": "DSS",
+   "R2 Hurricane": "DSS",
+   "P1 Spitfire": "DSS",
+   "P2 Spitfire": "DSS",
+   "Discord": "DDSSSSSS"
+  },
+  "luftwaffe": {
+   "Squadron Comms": "D",
+   "P Section Comms": "D",
+   "P1 BF 109F": "DSS",
+   "P2 BF 109F": "DSS",
+   "H1 Heinkel": "DDSS",
+   "S1 Stuka": "DDSS",
+   "S2 Stuka": "DDSS",
+   "Discord": "DDSSSSSS"
+  }
+ },
+ "landTiles": [],
+ "hexes": {
+  "0": "2-16",
+  "1": "1-17",
+  "2": "2-16",
+  "3": "1-17",
+  "4": "2-16",
+  "5": "1-17",
+  "6": "2-16",
+  "7": "1-17",
+  "8": "2-16",
+  "9": "1-17",
+  "10": "2-16",
+  "11": "1-17"
+ },
+ "tiles": [],
+ "tokens": [
+  {
+   "type": "cloud",
+   "hex": [
+    1,
+    3
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    5,
+    3
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    6,
+    6
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    1,
+    9
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    5,
+    9
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    6,
+    12
+   ]
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P2",
+   "hex": [
+    10,
+    4
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P1",
+   "hex": [
+    9,
+    5
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y2",
+   "hex": [
+    10,
+    8
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y1",
+   "hex": [
+    9,
+    9
+   ],
+   "facing": "SW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "R2",
+   "hex": [
+    10,
+    14
+   ],
+   "facing": "NW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "R1",
+   "hex": [
+    9,
+    15
+   ],
+   "facing": "NW"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "P1",
+   "hex": [
+    2,
+    12
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "P2",
+   "hex": [
+    4,
+    12
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "S1",
+   "hex": [
+    2,
+    14
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "S2",
+   "hex": [
+    4,
+    14
+   ],
+   "facing": "N"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "H1",
+   "hex": [
+    3,
+    15
+   ],
+   "facing": "N"
+  }
+ ],
+ "escape": [
+  [
+   0,
+   2
+  ],
+  [
+   1,
+   1
+  ],
+  [
+   2,
+   2
+  ],
+  [
+   3,
+   1
+  ],
+  [
+   4,
+   2
+  ],
+  [
+   5,
+   1
+  ],
+  [
+   6,
+   2
+  ],
+  [
+   7,
+   1
+  ],
+  [
+   8,
+   2
+  ],
+  [
+   9,
+   1
+  ],
+  [
+   10,
+   2
+  ],
+  [
+   11,
+   1
+  ]
+ ]
+}

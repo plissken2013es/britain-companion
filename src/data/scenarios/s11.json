@@ -1,0 +1,525 @@
+{
+ "id": 11,
+ "title": "Battle of Britain Day",
+ "initiative": "luftwaffe",
+ "win": {
+  "raf": [
+   {
+    "neutralise": 3
+   }
+  ],
+  "luftwaffe": [
+   {
+    "points": 5,
+    "per": {
+     "aircraft": 1,
+     "ship": 1,
+     "structure": 1
+    }
+   }
+  ]
+ },
+ "cards": {
+  "raf": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "R Section Comms": "S",
+   "P Section Comms": "S",
+   "B Section Comms": "D",
+   "AAA": "D",
+   "Ships": "D",
+   "Y* Hurricane": "DSSS",
+   "Y2 Hurricane": "DSS",
+   "R1 Hurricane": "SSS",
+   "R2 Hurricane": "SSS",
+   "P1 Spitfire": "SSS",
+   "P2 Spitfire": "SSS",
+   "B* Spitfire": "DSSS",
+   "B2 Spitfire": "DSS",
+   "Discord": "DDSSSSSS"
+  },
+  "luftwaffe": {
+   "Squadron Comms": "D",
+   "Y Section Comms": "D",
+   "G Section Comms": "D",
+   "B Section Comms": "D",
+   "Y* BF 109E": "DSSS",
+   "Y2 BF 109E": "DSS",
+   "G1 BF 110C": "DSS",
+   "G2 BF 110C": "DSS",
+   "B* BF 109F": "DSSS",
+   "B2 BF 109F": "DSS",
+   "H1 Heinkel": "DDSS",
+   "Discord": "DDSSSSSS"
+  }
+ },
+ "landTiles": [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "I",
+  "J",
+  "L",
+  "O",
+  "P",
+  "V",
+  "W",
+  "X"
+ ],
+ "hexes": {
+  "0": "2-16",
+  "1": "1-17",
+  "2": "2-16",
+  "3": "1-17",
+  "4": "2-16",
+  "5": "1-17",
+  "6": "2-16",
+  "7": "1-17",
+  "8": "2-16",
+  "9": "1-17",
+  "10": "2-16",
+  "11": "1-17",
+  "12": "2-16",
+  "13": "1-17",
+  "14": "2-16",
+  "15": "3-17"
+ },
+ "tiles": [
+  {
+   "id": "A",
+   "hex": [
+    0,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "B",
+   "hex": [
+    2,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "O",
+   "hex": [
+    4,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "C",
+   "hex": [
+    6,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "D",
+   "hex": [
+    8,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "E",
+   "hex": [
+    10,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "F",
+   "hex": [
+    12,
+    8
+   ],
+   "rot": 0
+  },
+  {
+   "id": "W",
+   "hex": [
+    1,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "V",
+   "hex": [
+    3,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "J",
+   "hex": [
+    5,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "I",
+   "hex": [
+    7,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "L",
+   "hex": [
+    9,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "X",
+   "hex": [
+    11,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "G",
+   "hex": [
+    13,
+    13
+   ],
+   "rot": 180
+  },
+  {
+   "id": "P",
+   "hex": [
+    15,
+    13
+   ],
+   "rot": 180
+  }
+ ],
+ "tokens": [
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "G2",
+   "hex": [
+    3,
+    1
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "G1",
+   "hex": [
+    5,
+    1
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B2",
+   "hex": [
+    7,
+    1
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "B*",
+   "hex": [
+    8,
+    2
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "Y2",
+   "hex": [
+    10,
+    2
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "H1",
+   "hex": [
+    11,
+    1
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "luftwaffe",
+   "unit": "Y*",
+   "hex": [
+    12,
+    2
+   ],
+   "facing": "S"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y*",
+   "hex": [
+    3,
+    13
+   ],
+   "facing": "NE"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "Y2",
+   "hex": [
+    2,
+    14
+   ],
+   "facing": "NE"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "R2",
+   "hex": [
+    5,
+    13
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "R1",
+   "hex": [
+    6,
+    14
+   ],
+   "facing": "SE",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P1",
+   "hex": [
+    4,
+    14
+   ],
+   "facing": "NW",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "P2",
+   "hex": [
+    5,
+    15
+   ],
+   "facing": "NW",
+   "state": "out"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B*",
+   "hex": [
+    10,
+    14
+   ],
+   "facing": "NW"
+  },
+  {
+   "type": "aircraft",
+   "side": "raf",
+   "unit": "B2",
+   "hex": [
+    11,
+    15
+   ],
+   "facing": "NW"
+  },
+  {
+   "type": "ship",
+   "hex": [
+    2,
+    8
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "ship",
+   "hex": [
+    7,
+    9
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "ship",
+   "hex": [
+    14,
+    12
+   ],
+   "facing": "N",
+   "face": "up",
+   "defence": 8
+  },
+  {
+   "type": "structure",
+   "hex": [
+    1,
+    13
+   ],
+   "defence": 6,
+   "label": "town (tile W)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    9,
+    13
+   ],
+   "defence": 6,
+   "label": "town (tile L)"
+  },
+  {
+   "type": "structure",
+   "hex": [
+    13,
+    15
+   ],
+   "defence": 6,
+   "label": "coastal town (tile G)"
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    1,
+    11
+   ]
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    6,
+    10
+   ]
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    12,
+    12
+   ]
+  },
+  {
+   "type": "aaa",
+   "hex": [
+    8,
+    16
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    1,
+    7
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    5,
+    7
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    8,
+    8
+   ]
+  },
+  {
+   "type": "balloon",
+   "hex": [
+    13,
+    9
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    4,
+    4
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    2,
+    10
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    5,
+    11
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    10,
+    10
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    12,
+    8
+   ]
+  },
+  {
+   "type": "cloud",
+   "hex": [
+    12,
+    14
+   ]
+  }
+ ],
+ "escape": []
+}
