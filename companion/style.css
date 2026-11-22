@@ -154,7 +154,7 @@ input, select, textarea { background: #0d1318; color: var(--ink); border: 1px so
 .ccounter.pickable .body { stroke: var(--accent) !important; stroke-width: 4; }
 .ccounter.armed .body { stroke: #fff !important; stroke-width: 5; }
 .ccounter.focus .body { stroke: #fff !important; stroke-width: 4; }
-.cmap .arrow { stroke-width: 3; stroke-linecap: round; stroke-dasharray: 9 6; }
+.cmap .arrow { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 9 6; }
 .cmap .arrow.raf { stroke: var(--raf-l); }
 .cmap .arrow.luftwaffe { stroke: var(--lw-l); }
 .cmap .arrow-head { fill: var(--accent); }

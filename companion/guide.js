@@ -81,7 +81,8 @@ export function guideSteps(entries, me, before) {
                 }
                 i = j - 1;
                 at = i;
-                const arrow = from && path.length > 1 ? [{ from, to: e.aircraft, side: SIDES[bot] }] : [];
+                // the arrow goes through every hex it flew, not straight from where it was to where it is
+                const arrow = from && path.length > 1 ? [{ from, path, to: e.aircraft, side: SIDES[bot] }] : [];
                 push({ text: t('cmp.g.fly', { aircraft: pn(e.aircraft), steps: parts.join(', ') }), focus: { aircraft: e.aircraft, hexes: path }, arrow, kind: 'table', sound: 'engine' });
                 break;
             }

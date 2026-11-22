@@ -90,7 +90,9 @@ export function drawMap(view, { picks = new Map(), onPick, focus = {}, arrow = [
         const from = at[ar.from] ?? (ar.from.includes(',') ? center(ar.from) : null);
         const to = at[ar.to] ?? (ar.to.includes(',') ? center(ar.to) : null);
         if (!from || !to) continue;
-        g.append(s('line', { x1: from[0], y1: from[1], x2: to[0], y2: to[1], class: `arrow ${ar.side}`, 'marker-end': 'url(#cmp-head)' }));
+        // a flight passes through the centre of each hex it flew and ends on the counter; an attack is one straight line
+        const points = ar.path ? [...ar.path.slice(0, -1).map(center), to] : [from, to];
+        g.append(s('polyline', { points: points.map((p) => p.join(',')).join(' '), class: `arrow ${ar.side}`, 'marker-end': 'url(#cmp-head)' }));
     }
     const defs = s('defs', {}, s('marker', { id: 'cmp-head', viewBox: '0 0 10 10', refX: 8, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto-start-reverse' },
         s('path', { d: 'M0 0 L10 5 L0 10 Z', class: 'arrow-head' })));

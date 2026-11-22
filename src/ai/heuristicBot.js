@@ -45,6 +45,9 @@ export const W = {
     escapeFacing: 0.3, // per hex two straight moves bring it closer (flying diagonally to a straight edge does not)
     mend: 1.5, // Bolster: extra worth of a card of an aircraft on the board, × its worth / (1 + the cards it has left)
     mendComms: 0.75, // and of Bolster itself, for the aircraft in most need it can take a card for
+    shipAway: 1, // a ship the enemy scores sails: per hex further from the nearest enemy bomber (scenario 11)
+    shipOut: 2, // and off the board, where it can no longer be bombed
+    shipOn: 0.1, // a ship sailing the same distance from them: on towards the edge
 };
 
 /**
@@ -163,7 +166,7 @@ export function heuristicBot(seed = 'h') {
                 return pick(req.options, (o) => endScore(ctx, a, { hex: a.hex, facing: o.id === 'none' ? a.facing : turn(a.facing, o.id === 'left' ? -1 : 1) }, 'stop', false));
             }
             case 'sail':
-                return pick(req.options, (o) => (o.id === 'done' ? 0 : 1));
+                return pick(req.options, (o) => (o.id === 'done' ? 0 : sailGain(ctx, view.markers.find((m) => m.id === o.marker))));
             case 'deploy': { // scenario 9: the hex whose best facing ends a flight best (the scenario goal, the edge, the danger),
                 // with some chance in it, so that the hexes do not tell the aircraft from its decoy
                 const a = { ...view.aircraft[req.aircraft], status: 'board' };
@@ -228,6 +231,24 @@ function markerWorth(conds, type) {
         if (c.points != null && c.per?.[type]) w = Math.max(w, WORTH.markerPoints * c.per[type]);
     }
     return w;
+}
+
+/**
+ * What sailing ship `m` one hex ahead is worth (against stopping, 0). When getting ships out counts for me (scenario
+ * 6) every ship sails. When the enemy scores ships (scenario 11, where they sail north towards the bombers coming
+ * in), a ship sails only away from the nearest enemy bomber, or off the board. In the user's game of 2026-11-22 the
+ * bot sailed a ship into the hex of the Bf 110 that sank it next turn without moving.
+ */
+function sailGain(ctx, m) {
+    if (ctx.conds.some((c) => c.escape != null && c.what === 'ship')) return 1;
+    if (!ctx.foeConds.some((c) => (c.destroy != null && (!c.what || c.what.includes('ship'))) || c.per?.ship)) return 1;
+    const next = step(m.hex, m.facing);
+    if (!ctx.board.has(next)) return W.shipOut;
+    const bombers = foesOnBoard(ctx.view, ctx.me).filter((e) => has(e, 'bomb'));
+    if (!bombers.length) return 1;
+    const near = (hex) => Math.min(...bombers.map((e) => distance(hex, e.hex)));
+    const gain = near(next) - near(m.hex);
+    return gain ? W.shipAway * gain : W.shipOn;
 }
 
 /** May aircraft `a` of mine leave by the escape hexes now? */
